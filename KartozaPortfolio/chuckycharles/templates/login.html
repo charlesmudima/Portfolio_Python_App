@@ -67,7 +67,7 @@
 		}
 
 		#messages{
-			background-color: grey;
+			background-color: #33ccff;
 			color: #fff;
 			padding: 10px;
 			margin-top: 10px;
@@ -89,23 +89,32 @@
                         {% csrf_token %}
 						<div class="input-group mb-3">
 							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-user"></i></span>
+								<span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
 							</div>
-							<input type="text" name="username" placeholder="Username..." class="form-control">
+							<input type="text" name="username" placeholder="Email..." class="form-control">
+                            {{form.email}}
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
-								<input type="password" name="password" placeholder="Password..." class="form-control" >
+								<!-- <input type="password" name="password" placeholder="Password..." class="form-control" > -->
+                                {{form.password}}
 						</div>
 
 							<div class="d-flex justify-content-center mt-3 login_container">
-				 				<input class="btn login_btn" type="submit" value="Login"> <a href="{% url 'index' %}"></a>
+                                <!-- Need to check if user actually exist before loggin -->
+                                <a class="btn login_btn" href="/index">Login</a>
 				   			</div>
 					</form>
 
 				</div>
+
+                {% for messages in messages %}
+                  <div id="messages">
+                        {{messages}}
+                    </div>
+                {% endfor %}
 		
 				<div class="mt-4">
 					<div class="d-flex justify-content-center links">
@@ -116,6 +125,13 @@
 			</div>
 		</div>
 	</div>
+    <script>
+        var form_fields = document.getElementsByTagName('input');
+        form_fields[1].placeholder = "Email...";
+        form_fields[2].placeholder = "Password...";
+
+    </script>
+
 </body>
 
 </html>
