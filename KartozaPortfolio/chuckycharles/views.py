@@ -15,6 +15,7 @@ def home(request):
         form = ProfileForm(request.POST)
         if form.is_valid():
             form.save()
+            # return redirect('home')
     context = {'form': form}
     return render(request, 'home.html', context)
 
