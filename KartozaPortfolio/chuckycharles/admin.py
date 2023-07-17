@@ -3,6 +3,7 @@ from .models import Profile
 from django.contrib.auth.admin import UserAdmin
 from django.forms import TextInput, Textarea
 
+# Listing, and display and searching of users in the admin panel
 class UserAdminConfig(UserAdmin):
     ordering = ['user_name']
     list_display = ('email','user_name','first_name', 'last_name', 'address', 'is_active', 'is_staff')
@@ -11,9 +12,10 @@ class UserAdminConfig(UserAdmin):
     
     fieldsets = (
         (None, {'fields': ('email','user_name','first_name', 'last_name')}),
-        ('Permissions', {'fields': ('is_staff', 'is_active')}),
+        ('Permissions', {'fields': ('is_staff', 'is_active', 'is_superuser')}),
         ('Personal', {'fields': ('about', 'phone_number','address')}),
     )
+    # This is when you want to add a new user
     add_fieldsets = (
         (None, {
             'classes': ('wide',),

@@ -15,7 +15,7 @@ class CustomAccountManager(BaseUserManager):
         other_fields.setdefault('is_superuser', True)
         other_fields.setdefault('is_active', True)
 
-        # check to make sure staff is set
+        # check to make sure staff and superuser is set
         if other_fields.get('is_staff') is not True:
             raise ValueError(gettext_lazy('Superuser must be assigned to is_staff=True'))
         if other_fields.get('is_superuser') is not True:
