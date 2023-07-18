@@ -1,0 +1,125 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+    <!-- FontAwesome CDN-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+        integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+    <!-- Chartjs CDN-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+    {% include 'nav.html' %}
+    {% csrf_token %}
+    <div class="container">
+
+        {% block content %}
+
+        {% endblock %}
+    </div>
+
+    <!-- Login successful message -->
+    {% for message in messages %}
+    <div id="messages">
+        {{ message }}
+    </div>
+    {% endfor %}
+
+    <div class="col-md-8 offset-md-2">
+        <h1>Welcome {{ form.user_name }}</h1>
+        <hr>
+        <h2><a href=""></a></h2>
+        <small>
+            <a href=""></a>&nbsp;
+        </small>
+        <p></p>
+
+    </div>
+
+    <div id="map"></div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    -->
+
+    <script>
+        function initMap() {
+            // Check if Geolocation is supported by the browser
+            if (navigator.geolocation) {
+                // Request current position
+                navigator.geolocation.getCurrentPosition(
+                    function (position) {
+                        var myLocation = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
+
+                        // Create a map centered at your location
+                        var map = new google.maps.Map(document.getElementById("map"), {
+                            zoom: 14,
+                            center: myLocation
+                        });
+
+                        // Create a marker for your location
+                        var marker = new google.maps.Marker({
+                            position: myLocation,
+                            map: map,
+                            title: "My Location"
+                        });
+                    },
+                    function (error) {
+                        console.log("Error occurred. Error code: " + error.code + ". Error message: " + error.message);
+                    }
+                );
+            } else {
+                console.log("Geolocation is not supported by this browser.");
+            }
+        }
+
+        // Call the initMap function when the Google Maps API has loaded
+        function loadMapScript() {
+            var script = document.createElement("script");
+            script.src = "https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap";
+            document.body.appendChild(script);
+        }
+
+        // Load the Google Maps API asynchronously
+        window.onload = loadMapScript;
+    </script>
+</body>
+
+</html>
+
