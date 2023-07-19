@@ -58,7 +58,7 @@ Lastly , on the dashboard the user can also view a map showing their current loc
 --> Requires Google API to view the map 
 
 ## Built With
-
+--> Time taken: 4 days
 * [Django](https://www.djangoproject.com/) - The web framework used
 * [Bootstrap](https://getbootstrap.com/) - The CSS framework used
 * [JQuery](https://jquery.com/) - JavaScript library used
