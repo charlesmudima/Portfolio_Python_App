@@ -6,7 +6,7 @@ from django.forms import TextInput, Textarea
 # Listing, and display and searching of users in the admin panel
 class UserAdminConfig(UserAdmin):
     ordering = ['user_name']
-    list_display = ('email','user_name','first_name', 'last_name', 'address', 'is_active', 'is_staff')
+    list_display = ('email','user_name','first_name', 'last_name', 'address', 'location','is_active', 'is_staff')
     search_fields = ('email','user_name','first_name', 'last_name')
     list_filter = ('email','user_name','first_name', 'last_name', 'is_active', 'is_staff')
     
@@ -19,7 +19,7 @@ class UserAdminConfig(UserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email','user_name','first_name', 'last_name', 'password1', 'password2', 'address','phone_number','is_active', 'is_staff')}
+            'fields': ('email','user_name','first_name', 'last_name', 'password1','password2', 'address','phone_number','location','is_active', 'is_staff')}
         ),
     )
 # Register your models here.
