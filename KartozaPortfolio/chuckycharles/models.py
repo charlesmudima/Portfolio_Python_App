@@ -45,8 +45,8 @@ class Profile(AbstractBaseUser, PermissionsMixin):
     about = models.TextField(gettext_lazy('about'), max_length=500, blank=True)
     address = models.CharField(max_length=150, blank=True)
     phone_number = models.CharField(max_length=15, blank=True)
-    # location = models.PointField(blank=True)
-    is_staff = models.BooleanField(default=False)
+    location = models.CharField(max_length=150, blank=True)
+    is_staff = models.BooleanField(default=True)
     is_active = models.BooleanField(default=True)
 
     objects = CustomAccountManager()
