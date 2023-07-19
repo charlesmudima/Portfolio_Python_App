@@ -119,7 +119,12 @@
 							</div>
 							{{form.address}}
 						</div>
-                        
+                        <div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-location-pin"></i></span>
+							</div>
+							{{form.location}}
+						</div>
                         <!-- Insert about below here -->
 
 				   		<div class="d-flex justify-content-center mt-3 login_container">
@@ -151,7 +156,7 @@
 		form_fields[5].placeholder='Enter password...';
 		form_fields[6].placeholder='Phone number...';
         form_fields[7].placeholder='Home address';
-        // form_fields[9].placeholder='is_active';
+        form_fields[8].placeholder='Location..(e.g. 23.45, 34.56)';
         // form_fields[5].placeholder='location';
 
 		for (var field in form_fields){	

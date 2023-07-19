@@ -109,7 +109,7 @@
 					</form>
 
 				</div>
-
+				{% csrf_token %}
                 {% for messages in messages %}
                   <div id="messages">
                         {{messages}}
